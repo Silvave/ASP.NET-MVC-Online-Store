@@ -10,21 +10,21 @@
     {
         static void Main(string[] args)
         {
-            ShopContext context = new ShopContext();
+            //ShopContext context = new ShopContext();
 
-            var addresses = context.Addresses.ToList();
+            //var addresses = context.Addresses.ToList();
 
-            Console.WriteLine("Addresses:");
-            addresses.ForEach(a => Console.WriteLine($"\t{a.Location}"));
+            //Console.WriteLine("Addresses:");
+            //addresses.ForEach(a => Console.WriteLine($"\t{a.Location}"));
 
-            var cat = context.Categories.Find(1);
+            //var cat = context.Categories.Find(1);
 
-            Console.WriteLine($"Category: {cat.Name}");
-            Console.WriteLine($"Products:");
-            foreach (var product in cat.Products)
-            {
-                Console.WriteLine($"\t{product.Name} - {product.Price}");
-            }
+            //Console.WriteLine($"Category: {cat.Name}");
+            //Console.WriteLine($"Products:");
+            //foreach (var product in cat.Products)
+            //{
+            //    Console.WriteLine($"\t{product.Name} - {product.Price}");
+            //}
         }
     }
 }
