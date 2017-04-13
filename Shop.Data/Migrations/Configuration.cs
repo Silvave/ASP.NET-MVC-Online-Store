@@ -3,6 +3,8 @@ namespace Shop.Data.Migrations
     using System.Data.Entity.Migrations;
     using Models;
     using System.Collections.Generic;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ShopContext>
     {
@@ -14,6 +16,15 @@ namespace Shop.Data.Migrations
 
         protected override void Seed(ShopContext context)
         {
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            RoleSeeder.CreateRole(roleManager, userManager, "Administrators");
+            UserSeeder.CreateOrUpdateAdministrator(roleManager, userManager, "admin@admin.com", "admin123");
+          
+            
+
+
             context.Addresses.AddOrUpdate(
                 a => a.Location,
                 new Address { Location = "Pirin 16 left rock" },

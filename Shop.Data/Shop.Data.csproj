@@ -64,6 +64,8 @@
       <DependentUpon>201704121740443_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\RoleSeeder.cs" />
+    <Compile Include="Migrations\UserSeeder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShopContext.cs" />
   </ItemGroup>
