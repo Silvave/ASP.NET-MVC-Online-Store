@@ -21,6 +21,8 @@ namespace Shop.Data.Migrations
 
             RoleSeeder.CreateRole(roleManager, userManager, "Administrators");
             UserSeeder.CreateOrUpdateAdministrator(roleManager, userManager, "admin@admin.com", "admin123");
+            UserSeeder.CreateOrUpdateUser(userManager, "ivan.ivanov@ivan.com","ivan123");
+            UserSeeder.CreateOrUpdateUser(userManager, "peter@pesho.com", "peter123");
           
             
 

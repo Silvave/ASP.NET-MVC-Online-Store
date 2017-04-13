@@ -1,0 +1,32 @@
+﻿@model Shop.Web.ViewModels.Admin.AdminIndexViewModel
+@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead"> This is the ADMIN PANEL !</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+<ul class="list-group">
+    @if (Model.Users.Count <= 0)
+    {
+        <li class="list-group-item">There are no users in the system!</li>
+
+    }
+    else
+    {
+        foreach (var user in Model.Users)
+        {
+            <li class="list-group-item">@user.UserName</li>
+        }
+    }
+</ul>
+
+
+
+
+
+
+
