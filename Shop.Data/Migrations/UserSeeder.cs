@@ -1,18 +1,12 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Shop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Shop.Data.Migrations
+﻿namespace Shop.Data.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
+
     public static class UserSeeder
     {
         //Creates user without a role (default user).
-
         public static void CreateOrUpdateUser(UserManager<ApplicationUser> userManager, string userName,string password)
         {
             var user = new ApplicationUser { UserName = userName, Email = userName };
@@ -28,7 +22,6 @@ namespace Shop.Data.Migrations
         }
 
         // Creates user with a custom (non-admin) role
-
         public static void CreateOrUpdateUser(RoleManager<IdentityRole> roleManager,string roleName, UserManager<ApplicationUser> userManager, string userName, string password)
         {
             var user = new ApplicationUser { UserName = userName, Email = userName };
@@ -50,7 +43,6 @@ namespace Shop.Data.Migrations
         }
 
         //Creates administrator
-
         public static void CreateOrUpdateAdministrator(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, string userName, string password)
         {
             var user = new ApplicationUser { UserName = userName, Email = userName };

@@ -3,9 +3,9 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Category
+    public class Tag
     {
-        public Category()
+        public Tag()
         {
             Products = new HashSet<Product>();
         }
@@ -14,10 +14,6 @@
 
         [Required]
         public string Name { get; set; }
-
-        [Required]
-        [StringLength(20, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
-        public string Description { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }

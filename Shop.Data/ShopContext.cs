@@ -10,7 +10,8 @@ namespace Shop.Data
         public ShopContext()
             : base("ShopContext", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ShopContext, Configuration>());
+            Database.SetInitializer(
+                new MigrateDatabaseToLatestVersion<ShopContext, Configuration>());
         }
 
         public static ShopContext Create()
@@ -20,6 +21,12 @@ namespace Shop.Data
 
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<CommentLike> CommentLikes { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductLike> ProductLikes { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<Town> Towns { get; set; }
     }
 }

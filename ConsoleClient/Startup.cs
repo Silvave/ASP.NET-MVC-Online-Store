@@ -10,7 +10,29 @@
     {
         static void Main(string[] args)
         {
-            //ShopContext context = new ShopContext();
+            ShopContext context = new ShopContext();
+
+            var country = new Country()
+            {
+                Name = "Bulgaria"
+            };
+
+            context.Countries.Add(country);
+
+            var bg = context.Countries.Find(1);
+            Console.WriteLine(bg.Name);
+
+            //var towns = new List<Town>()
+            //{
+            //    new Town() { Name = "Burgas" },
+            //    new Town() { Name = "Sofia" },
+            //    new Town() { Name = "Varna" }
+            //};
+
+            //var addresses = new List<Address>()
+            //{
+            //    new Address() { StreetName = "Borovo",  }
+            //};
 
             //var addresses = context.Addresses.ToList();
 
