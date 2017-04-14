@@ -16,14 +16,14 @@ namespace Shop.Data.Migrations
 
         protected override void Seed(ShopContext context)
         {
-            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-            //RoleSeeder.CreateRole(roleManager, userManager, "Administrators");
-            //UserSeeder.CreateOrUpdateAdministrator(roleManager, userManager, "admin@admin.com", "admin123");
-            //UserSeeder.CreateOrUpdateUser(userManager, "ivan.ivanov@ivan.com","ivan123");
-            //UserSeeder.CreateOrUpdateUser(userManager, "peter@pesho.com", "peter123");
-          
+            RoleSeeder.CreateRole(roleManager, userManager, "Administrator");
+            UserSeeder.CreateOrUpdateAdministrator(roleManager, userManager, "admin@admin.com", "admin123");
+            UserSeeder.CreateOrUpdateUser(userManager, "ivan.ivanov@ivan.com", "ivan123");
+            UserSeeder.CreateOrUpdateUser(userManager, "peter@pesho.com", "peter123");
+
 
             //context.Addresses.AddOrUpdate(
             //    a => a.StreetName,

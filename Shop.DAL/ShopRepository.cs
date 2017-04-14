@@ -12,7 +12,7 @@
             _context = context;
         }
 
-
+        // Add query methods with their logic here
 
 
         private bool disposed = false;
