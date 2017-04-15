@@ -5,6 +5,7 @@
 
 <head>
     <link rel="stylesheet" href="~/Content/registerUser.css" type="text/css" />
+    <script src="~/Scripts/custom/priviewImage.js"></script>
 </head>
 
 <h2>@ViewBag.Title.</h2>
@@ -62,7 +63,7 @@
                 <img class="img-responsive" id="file" src="#" alt="Profile picture" >
             </div>
             @Html.TextBoxFor(m => m.ProfilePicture, new { @class = "col-md-offset-2 btn btn-default",
-           type = "file", @onchange = "previewFile()" })
+           type = "file", @onchange = "previewImage()" })
         </div>
 
         <div class="col-md-offset-2 col-md-10">
@@ -74,19 +75,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-<script>
-    function previewFile() {
-        let preview = document.querySelector('img');
-        let file = document.querySelector('input[type=file]').files[0];
-        let reader = new FileReader();
-
-        reader.onloadend = () => preview.src = reader.result;
-
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "#";
-        }
-    }
-</script>
