@@ -3,24 +3,23 @@
     using System;
     using Shop.Data;
     using Shop.Models;
-    using System.Collections.Generic;
-    using System.Linq;
 
     class Startup
     {
         static void Main(string[] args)
         {
-            //ShopContext context = new ShopContext();
+            ShopContext context = new ShopContext();
 
-            //var country = new Country()
-            //{
-            //    Name = "Bulgaria"
-            //};
+            var country = new Country()
+            {
+                Name = "Bulgaria"
+            };
 
-            //context.Countries.Add(country);
+            context.Countries.Add(country);
+            context.SaveChanges();
 
-            //var bg = context.Countries.Find(1);
-            //Console.WriteLine(bg.Name);
+            var bg = context.Countries.Find(1);
+            Console.WriteLine(bg.Name);
 
             //var towns = new List<Town>()
             //{

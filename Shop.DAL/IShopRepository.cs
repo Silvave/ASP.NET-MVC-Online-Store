@@ -1,6 +1,7 @@
 ﻿namespace Shop.DAL
 {
     using System;
+    using Models;
 
     public interface IShopRepository : IDisposable
     {

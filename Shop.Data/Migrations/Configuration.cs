@@ -20,9 +20,15 @@ namespace Shop.Data.Migrations
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             RoleSeeder.CreateRole(roleManager, userManager, "Administrator");
-            UserSeeder.CreateOrUpdateAdministrator(roleManager, userManager, "admin@admin.com", "admin123");
-            UserSeeder.CreateOrUpdateUser(userManager, "ivan.ivanov@ivan.com", "ivan123");
-            UserSeeder.CreateOrUpdateUser(userManager, "peter@pesho.com", "peter123");
+            RoleSeeder.CreateRole(roleManager, userManager, "Manager");
+            RoleSeeder.CreateRole(roleManager, userManager, "Customer");
+
+            UserSeeder.CreateOrUpdateUser(roleManager, "Administrator", userManager, "admin@admin.com",
+                "peshkata", "admin123", "Pesho", "Stamatov", 69);
+            UserSeeder.CreateOrUpdateUser(roleManager, "Manager", userManager,"ivan.ivanov@ivan.com", 
+                "vankata","ivan123", "Ivan", "Ivanov", 19);
+            UserSeeder.CreateOrUpdateUser(roleManager, "Customer", userManager, "peter@pesho.com", 
+                "velikiq", "peter123", "Petar", "Petrov", 21);
 
 
             //context.Addresses.AddOrUpdate(

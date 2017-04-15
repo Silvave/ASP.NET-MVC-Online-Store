@@ -48,6 +48,11 @@ namespace Shop.Data.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(nullable: false, maxLength: 10),
+                        LastName = c.String(nullable: false, maxLength: 15),
+                        Age = c.Int(),
+                        Gender = c.Int(),
+                        ProfilePicture = c.Binary(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),

@@ -5,9 +5,10 @@
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [StringLength(30, ErrorMessage = "The {0} must be between {2} and {1} characters long.",
+            MinimumLength = 1)]
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

@@ -3,35 +3,70 @@
     ViewBag.Title = "Register";
 }
 
+<head>
+    <link rel="stylesheet" href="~/Content/registerUser.css" type="text/css" />
+</head>
+
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    <div class="form-group registration">
+        
+        <div class="col-md-10 reg-item">
+            @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+
+        <div class="col-md-10 reg-item">
+            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-10 reg-item">
+            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-10 reg-item">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
+
+        <div class="col-md-10 reg-item">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
-    </div>
-    <div class="form-group">
+
+        <div class="col-md-10 reg-item">
+            @Html.LabelFor(m => m.Age, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.Age, new { @class = "form-control", type = "number" })
+        </div>
+
+        <div class="col-md-10 reg-item">
+            @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+            @Html.EnumDropDownListFor(m => m.Gender, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-10 reg-item">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-10 reg-item">
+            <div class="image-wrapper">
+                <img class="img-responsive" id="file" src="#" alt="Profile picture" >
+            </div>
+            @Html.TextBoxFor(m => m.ProfilePicture, new { @class = "col-md-offset-2 btn btn-default",
+           type = "file", @onchange = "previewFile()" })
+        </div>
+
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-primary" value="Register" />
         </div>
     </div>
 }
@@ -39,3 +74,19 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    function previewFile() {
+        let preview = document.querySelector('img');
+        let file = document.querySelector('input[type=file]').files[0];
+        let reader = new FileReader();
+
+        reader.onloadend = () => preview.src = reader.result;
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "#";
+        }
+    }
+</script>
