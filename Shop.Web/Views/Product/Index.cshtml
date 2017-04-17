@@ -1,0 +1,13 @@
+﻿@model Shop.Models.Product
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="product-container">
+    <div class="main-product-view">
+        @{ Html.RenderPartial("Products"); }
+    </div>
+    <div class="main-product-bar"></div>
+</section>

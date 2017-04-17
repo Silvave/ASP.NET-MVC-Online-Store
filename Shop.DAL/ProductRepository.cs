@@ -3,17 +3,36 @@
     using System;
     using Models;
     using Data;
+    using System.Collections.Generic;
+    using System.Linq;
 
-    public class ShopRepository : IShopRepository, IDisposable
+    public class ProductRepository : IProductRepository, IDisposable
     {
         private ShopContext _context;
 
-        public ShopRepository(ShopContext context)
+        public ProductRepository()
+        {
+            _context = new ShopContext();
+        }
+
+        public ProductRepository(ShopContext context)
         {
             _context = context;
         }
 
         // Add query methods with their logic here
+
+        //public Type GetContextType()
+        //{
+        //    return ShopContext;
+        //}
+
+        public IList<Product> GetProducts()
+        {
+            return _context.Products.ToList();
+        }
+
+
 
 
         private bool disposed = false;

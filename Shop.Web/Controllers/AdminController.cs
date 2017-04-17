@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Shop.DAL;
 using Shop.Data;
 using Shop.Web.ViewModels.Admin;
 using System;
