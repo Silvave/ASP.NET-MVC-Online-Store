@@ -3,6 +3,7 @@
     using System;
     using Models;
     using Data;
+    using System.Collections.Generic;
 
     public class ShopRepository : IShopRepository, IDisposable
     {
@@ -14,7 +15,25 @@
         }
 
         // Add query methods with their logic here
+        public static bool CreateProduct(Product product)
+        {
+            bool isSuccess = false;
+            using (ShopRepository repo = new ShopRepository(new ShopContext()))
+            {
+                IEnumerable<Product> products = repo._context.Products;
 
+            }
+            return isSuccess;
+        }
+
+        public static IEnumerable<Category> GetCategories()
+        {
+            using (ShopRepository repo = new ShopRepository(new ShopContext()))
+            {
+                IEnumerable<Category> categories = repo._context.Categories;
+                return categories;
+            }
+        }
 
         private bool disposed = false;
 

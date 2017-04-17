@@ -8,7 +8,8 @@
     {
         static void Main(string[] args)
         {
-            //ShopContext context = new ShopContext();
+            ShopContext context = new ShopContext();
+            //context.Database.Initialize(true);
 
             //var country = new Country()
             //{

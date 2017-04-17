@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201704150137222_Init.Designer.cs">
       <DependentUpon>201704150137222_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704170817391_ModifiedProductProperties.cs" />
+    <Compile Include="Migrations\201704170817391_ModifiedProductProperties.Designer.cs">
+      <DependentUpon>201704170817391_ModifiedProductProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\RoleSeeder.cs" />
     <Compile Include="Migrations\UserSeeder.cs" />
@@ -82,6 +86,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704150137222_Init.resx">
       <DependentUpon>201704150137222_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704170817391_ModifiedProductProperties.resx">
+      <DependentUpon>201704170817391_ModifiedProductProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
