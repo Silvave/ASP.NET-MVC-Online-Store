@@ -4,6 +4,7 @@
     using DAL;
     using Models;
     using System.Collections.Generic;
+    using System.Web;
     using System.Web.Mvc;
     using ViewModels.Products;
 
@@ -75,6 +76,20 @@
             _productRepository.CreateProduct(product, currentUsername);
 
             return RedirectToAction("Index","Product");
+        }
+
+        [HttpGet]
+        // GET: Admin/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                throw new HttpException(404, "Not found");
+            }
+
+            var product = _productRepository.GetProductById((int)id);
+
+            return View();
         }
 
 

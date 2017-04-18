@@ -4,15 +4,18 @@
         {
     <article class="product-container">
         <div class="image-wrapper">
-            <img src="@product.ProductImage.RawFormat.Guid" alt="@product.Title" class="product-image" />
+            @*<img src="@product.ProductImage.RawFormat.Guid" alt="@product.Title" class="product-image" />*@
         </div>
         <a href="#">
-            <h3 class="product-title">@Html.ActionLink(@product.Title, "Post", "Product")</h3>
+            <h3 class="product-title">
+                @Html.ActionLink(@product.Title, "Details", "Product",
+                                      new { id = product.Id }, null)
+        </h3>
         </a>
         <div class="post-body">
             @product.Price
             @Html.Raw(product.ShortDescription)
-            @Html.ActionLink("Read more...", "Post", "Product")
+            @*@Html.ActionLink("Read more...", "Post", "Product")*@
         </div>
         <div class="date">
             <span class="created-on">@product.CreatedOn</span>

@@ -14,5 +14,6 @@
 
         IList<Category> GetCategories();
 
+        Product GetProductById(int id);
     }
 }

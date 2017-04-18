@@ -22,6 +22,11 @@
             return _context.Products.ToList();
         }
 
+        public Product GetProductById(int id)
+        {
+            return _context.Products.FirstOrDefault(p => p.Id == id);
+        }
+
         public void CreateProduct(Product product, string username)
         {
             var productList = new List<Category>();

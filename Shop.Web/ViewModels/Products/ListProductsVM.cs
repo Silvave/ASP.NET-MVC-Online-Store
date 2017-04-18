@@ -7,6 +7,8 @@
 
     public class ListProductsVM
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(20, ErrorMessage = "The {0} must be between {2} and {1} characters long.",
             MinimumLength = 2)]
