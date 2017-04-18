@@ -40,16 +40,6 @@
             foreach (var product in products)
             {
                 productList.Add(Mapper.Instance.Map<ListProductsVM>(product));
-                //productList.Add(new ListProductsVM()
-                //{
-                //    Title = product.Title,
-                //    ShortDescription = product.ShortDescription,
-                //    Description = product.Description,
-                //    CreatedOn = product.CreatedOn,
-                //    ModifiedOn = product.ModifiedOn,
-                //    Price = product.Price,
-                //    Owner = product.Owner
-                //});
             }
 
             return PartialView("Products", productList);
@@ -75,7 +65,7 @@
 
             _productRepository.CreateProduct(product, currentUsername);
 
-            return RedirectToAction("Index","Product");
+            return RedirectToAction("Index", "Product");
         }
 
         [HttpGet]
@@ -84,14 +74,21 @@
         {
             if (id == null)
             {
-                throw new HttpException(404, "Not found");
+                return RedirectToAction("Error", "Shared");
             }
 
             var product = _productRepository.GetProductById((int)id);
 
-            return View();
+            var productDetailsVM = Mapper.Instance.Map<ProductDetailsVM>(product);
+
+            return View("Details", productDetailsVM);
         }
 
+        //[HttpPost]
+        //public ActionResult Details()
+        //{
+        //    return RedirectToAction("Details", "Product");
+        //}
 
         #region Helpers
 

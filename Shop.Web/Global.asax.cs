@@ -37,15 +37,16 @@
                             mo => mo.MapFrom(src => FileToBytes(src.ProductImage)));
                 conf.CreateMap<Product, ListProductsVM>()
                 .ForMember(dest => dest.ProductImage,
-                            mo => mo.MapFrom(src => BytesToImage(src.ProductImage)));
+                            mo => mo.MapFrom(src => BytesToBase64(src.ProductImage)));
+                conf.CreateMap<Product, ProductDetailsVM>()
+                .ForMember(dest => dest.ProductImage,
+                            mo => mo.MapFrom(src => BytesToBase64(src.ProductImage)));
             });
         }
 
-        private Image BytesToImage(byte[] productImage)
+        private string BytesToBase64(byte[] productImage)
         {
-            MemoryStream ms = new MemoryStream(productImage);
-            Image returnImage = Image.FromStream(ms);
-            return returnImage;
+            return Convert.ToBase64String(productImage);
         }
 
         private static byte[] FileToBytes(HttpPostedFileBase imageFile)

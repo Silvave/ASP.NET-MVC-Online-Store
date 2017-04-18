@@ -3,7 +3,6 @@
     using Models;
     using System;
     using System.ComponentModel.DataAnnotations;
-    using System.Drawing;
 
     public class ListProductsVM
     {
@@ -32,7 +31,7 @@
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}", ConvertEmptyStringToNull = true)]
         public decimal Price { get; set; }
 
-        public Image ProductImage { get; set; }
+        public string ProductImage { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
     }
