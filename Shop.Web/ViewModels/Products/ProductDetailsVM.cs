@@ -1,17 +1,17 @@
-﻿namespace Shop.Web.ViewModels.Products
-{
-    using Models;
-    using System;
-    using System.ComponentModel.DataAnnotations;
-    using System.Drawing;
+﻿using Shop.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Drawing;
+using System.Linq;
+using System.Web;
 
-    public class ListProductsVM
+namespace Shop.Web.ViewModels.Products
+{
+    public class ProductDetailsVM
     {
         public int Id { get; set; }
-
-        [Required]
-        [StringLength(20, ErrorMessage = "The {0} must be between {2} and {1} characters long.",
-            MinimumLength = 2)]
+        
         public string Title { get; set; }
 
         [Required]
@@ -32,8 +32,11 @@
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}", ConvertEmptyStringToNull = true)]
         public decimal Price { get; set; }
 
-        public Image ProductImage { get; set; }
+        public byte[] ProductImage { get; set; }
 
+        public IEnumerable<Category> Categories { get; set; }
+
+        [Display(Name = "Creator")]
         public virtual ApplicationUser Owner { get; set; }
     }
 }

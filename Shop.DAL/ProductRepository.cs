@@ -47,6 +47,12 @@
             _context.SaveChanges();
         }
 
+        public Product Details(int id)
+        {
+            Product targetProduct = _context.Products.Where(p => p.Id == id).FirstOrDefault();
+            return targetProduct;
+        }
+
         #region dispose
         private bool disposed = false;
 

@@ -13,7 +13,6 @@
 
 @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
-    /* TODO: Create view for product adding */
     @Html.AntiForgeryToken()
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })

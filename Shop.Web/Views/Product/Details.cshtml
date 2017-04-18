@@ -1,0 +1,54 @@
+﻿@model Shop.Web.ViewModels.Products.ProductDetailsVM
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @value = Model.Title, @disabled = true })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ShortDescription, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ShortDescription, new { @class = "form-control", @value = Model.ShortDescription, @disabled = true })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = "15", @value = Model.ShortDescription, @disabled = true })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Price, new { @class = "form-control", @value = Model.Price, @disabled = true })
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Categories, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <ul>
+                @foreach (var category in Model.Categories)
+                {
+                    <li>
+                        <div>
+                            <ul>
+                                <li>Category: @category.Name</li>
+                                <li>Description: @category.Description</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <br />
+                }
+            </ul>
+        </div>
+    </div>
+    <div>
+        <img src="data:image;base64,@System.Convert.ToBase64String(Model.ProductImage)" />
+    </div>
+</div>
