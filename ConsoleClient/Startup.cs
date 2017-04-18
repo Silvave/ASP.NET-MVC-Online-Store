@@ -3,12 +3,28 @@
     using System;
     using Shop.Data;
     using Shop.Models;
+    using System.Linq;
 
     class Startup
     {
         static void Main(string[] args)
         {
-            //ShopContext context = new ShopContext();
+            ShopContext context = new ShopContext();
+
+            //var bira = new Product()
+            //{
+            //    Title = "Nakov's beer",
+            //    ShortDescription = "Got it after lecture",
+            //    Description = "Bla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lbaBla bla bla bla lba",
+            //    Price = 1.23m,
+            //    CreatedOn = DateTime.Now
+            //};
+
+            //bira.Owner = context.Users.FirstOrDefault();
+
+            //context.Products.Add(bira);
+            //context.SaveChanges();
+            //context.Database.Initialize(true);
 
             //var country = new Country()
             //{

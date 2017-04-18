@@ -1,15 +1,15 @@
 ﻿namespace Shop.Web.Controllers
 {
+    using AutoMapper;
     using DAL;
     using Models;
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using ViewModels;
+    using ViewModels.Products;
 
     public class ProductController : Controller
     {
         private IProductRepository _productRepository;
-        public static List<ProductViewModel> productList = new List<ProductViewModel>();
 
         public ProductController()
         {
@@ -33,31 +33,66 @@
         [ChildActionOnly]
         public ActionResult Products()
         {
-            productList.Clear();
+            List<ListProductsVM> productList = new List<ListProductsVM>();
 
             var products = _productRepository.GetProducts();
             foreach (var product in products)
             {
-                productList.Add(new ProductViewModel()
-                {
-                    Title = product.Title,
-                    ShortDescription = product.ShortDescription,
-                    Description = product.Description,
-                    CreatedOn = product.CreatedOn,
-                    ModifiedOn = product.ModifiedOn,
-                    Price = product.Price,
-                    Owner = product.Owner
-                });
+                productList.Add(Mapper.Instance.Map<ListProductsVM>(product));
+                //productList.Add(new ListProductsVM()
+                //{
+                //    Title = product.Title,
+                //    ShortDescription = product.ShortDescription,
+                //    Description = product.Description,
+                //    CreatedOn = product.CreatedOn,
+                //    ModifiedOn = product.ModifiedOn,
+                //    Price = product.Price,
+                //    Owner = product.Owner
+                //});
             }
 
-            return PartialView("Products");
+            return PartialView("Products", productList);
         }
+
+        //Get: /Product/Create
+        public ActionResult Create()
+        {
+            CreateProductVM createProduct = new CreateProductVM();
+            createProduct.Categories = _productRepository.GetCategories();
+
+            return View("Create", createProduct);
+        }
+
+        //Post: /Product/Create 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CreateProductVM model)
+        {
+            var product = Mapper.Instance.Map<Product>(model);
+
+            string currentUsername = User.Identity.Name;
+
+            _productRepository.CreateProduct(product, currentUsername);
+
+            return RedirectToAction("Index","Product");
+        }
+
 
         #region Helpers
 
         public IList<Product> GetProducts()
         {
             return _productRepository.GetProducts();
+        }
+
+        public void CreateProduct(Product product, string username)
+        {
+            _productRepository.CreateProduct(product, username);
+        }
+
+        public IList<Category> GetCategories()
+        {
+            return _productRepository.GetCategories();
         }
 
         #endregion

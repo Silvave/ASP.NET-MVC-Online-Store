@@ -8,9 +8,11 @@
     {
         // Add reference to the query methods here
 
-        //Type GetContextType();
-
         IList<Product> GetProducts();
+
+        void CreateProduct(Product product, string username);
+
+        IList<Category> GetCategories();
 
     }
 }

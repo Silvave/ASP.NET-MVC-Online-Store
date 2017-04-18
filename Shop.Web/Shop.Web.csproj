@@ -240,7 +240,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
-    <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\Products\CreateProductVM.cs" />
+    <Compile Include="ViewModels\Products\ListProductsVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminContent\blank-page.html" />
@@ -388,6 +389,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop.DAL\Shop.DAL.csproj">

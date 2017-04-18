@@ -1,10 +1,11 @@
-﻿namespace Shop.Web.ViewModels
+﻿namespace Shop.Web.ViewModels.Products
 {
     using Models;
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Drawing;
 
-    public class ProductViewModel
+    public class ListProductsVM
     {
         [Required]
         [StringLength(20, ErrorMessage = "The {0} must be between {2} and {1} characters long.",
@@ -26,7 +27,10 @@
         [Display(Name = "Edited on")]
         public DateTime? ModifiedOn { get; set; }
 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}", ConvertEmptyStringToNull = true)]
         public decimal Price { get; set; }
+
+        public Image ProductImage { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
     }

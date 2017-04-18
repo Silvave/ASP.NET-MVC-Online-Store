@@ -15,26 +15,39 @@
             _context = new ShopContext();
         }
 
-        public ProductRepository(ShopContext context)
-        {
-            _context = context;
-        }
-
         // Add query methods with their logic here
-
-        //public Type GetContextType()
-        //{
-        //    return ShopContext;
-        //}
 
         public IList<Product> GetProducts()
         {
             return _context.Products.ToList();
         }
 
+        public void CreateProduct(Product product, string username)
+        {
+            var productList = new List<Category>();
+            foreach (Category cat in product.Categories.Where(c => c.Checked))
+            {
+                productList.Add(_context.Categories.FirstOrDefault(c => c.Id == cat.Id));
+            }
+            product.Categories = productList;
 
+            product.Owner = _context.Users.FirstOrDefault(u => u.UserName == username);
 
+            _context.Products.Add(product);
+            Save();
+        }
 
+        public IList<Category> GetCategories()
+        {
+            return _context.Categories.ToList();
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
+        #region dispose
         private bool disposed = false;
 
         public void Dispose()
@@ -54,5 +67,6 @@
             }
             disposed = true;
         }
+        #endregion
     }
 }

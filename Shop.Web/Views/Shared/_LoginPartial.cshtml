@@ -11,6 +11,9 @@
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li>
+            @Html.ActionLink("Add product", "Create", "Product")
+        </li>
+        <li>
             @if (User.IsInRole("Administrator"))
             {
                 @Html.ActionLink("To Administration", "Index", "Admin", routeValues: null, htmlAttributes: new { title = "Manage" })
