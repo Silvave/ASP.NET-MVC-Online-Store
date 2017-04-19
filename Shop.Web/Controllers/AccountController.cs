@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Shop.Web.ViewModels.Account;
 using Shop.Models;
 using AutoMapper;
+using System.Web.Security;
 
 namespace Shop.Web.Controllers
 {
@@ -193,6 +194,15 @@ namespace Shop.Web.Controllers
         public ActionResult ForgotPassword()
         {
             return View();
+        }
+
+        [Authorize]
+        public ActionResult ProfilePage()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = UserManager.FindByIdAsync(userId);
+
+            return View(user);
         }
 
         //

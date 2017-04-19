@@ -221,6 +221,7 @@
     <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\ForgotViewModel.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Account\ProfilePageViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
@@ -229,6 +230,8 @@
     <Compile Include="ViewModels\Admin\DeleteUserViewModel.cs" />
     <Compile Include="ViewModels\Admin\EditUserViewModel.cs" />
     <Compile Include="ViewModels\Admin\LockUserAccountViewModel.cs" />
+    <Compile Include="ViewModels\Admin\ManageProductViewModel.cs" />
+    <Compile Include="ViewModels\Admin\ManageUserViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -277,6 +280,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\default-pic.png" />
     <Content Include="Content\registerUser.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -383,6 +387,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Account\ProfilePageView.cshtml" />
+    <Content Include="Views\Admin\ManageUser.cshtml" />
+    <Content Include="Views\Admin\ManageProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop.Data\Shop.Data.csproj">

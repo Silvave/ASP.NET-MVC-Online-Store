@@ -1,12 +1,20 @@
 ﻿@model Shop.Web.ViewModels.Manage.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Profile Page";
 }
 
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
+    @if (Model.ProfilePicture == null)
+    {
+        <img src="../../Content/default-pic.png" />
+    }
+    else
+    {
+        <img src="data:image;base64,@System.Convert.ToBase64String(Model.ProfilePicture)" />
+    }
     <h4>Change your account settings</h4>
     <hr />
     <dl class="dl-horizontal">

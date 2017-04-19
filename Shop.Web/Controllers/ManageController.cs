@@ -62,11 +62,16 @@ namespace Shop.Web.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-
             var userId = User.Identity.GetUserId();
+            var user =  UserManager.FindById(userId);
             var model = new IndexViewModel
             {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                ProfilePicture = user.ProfilePicture,
                 HasPassword = HasPassword(),
+                Email = user.Email,
+                UserName = user.UserName,
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),

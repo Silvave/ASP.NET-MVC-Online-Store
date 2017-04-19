@@ -4,27 +4,114 @@
 }
 
 <h2>@ViewBag.Title.</h2>
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead"> This is the ADMIN PANEL !</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-inverse">
+                <caption><b>Users</b></caption>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Users.Count <= 0)
+                    {
+                        <tr></tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>There are no users in the system!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var user in Model.Users)
+                        {
+                            if (user.IsDeleted)
+                            {
+                                
+                                <tr class="danger">
+                                    <th scope="row">@user.UserName</th>
+                                    <td>@user.Email</td>
+                                    <td>@user.FirstName</td>
+                                    <td>@user.LastName</td>
+                                   
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <th scope="row">@user.UserName</th>
+                                    <td>@user.Email</td>
+                                    <td>@user.FirstName</td>
+                                    <td>@user.LastName</td>
+                                    <td>@user.Id</td>
+                                    <td>@Html.ActionLink("Manage", "ManageUser",new {id = user.Id })</td>
+                                </tr>
+                            }
+
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-inverse">
+                <caption><b>Products</b></caption>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Short Description</th>
+                        <th>Created On</th>
+                        <th>Owner</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Products.Count <= 0)
+                    {
+                        <tr></tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>There are no products in the system!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var product in Model.Products)
+                        {
+                            if (false) // Check if product is deleted
+                            {
+                                <tr class="danger">
+                                    <th scope="row">@product.Title</th>
+                                    <td>@product.ShortDescription</td>
+                                    <td>@product.CreatedOn</td>
+                                    <td>@product.Owner</td>
+                                    <td>@product.Price</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <th scope="row">@product.Title</th>
+                                    <td>@product.ShortDescription</td>
+                                    <td>@product.CreatedOn</td>
+                                    <td>@product.Owner</td>
+                                    <td>@product.Price</td>
+                                </tr>
+                            }
+
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<ul class="list-group">
-    @if (Model.Users.Count <= 0)
-    {
-        <li class="list-group-item">There are no users in the system!</li>
-
-    }
-    else
-    {
-        foreach (var user in Model.Users)
-        {
-            <li class="list-group-item">@user.UserName</li>
-        }
-    }
-</ul>
-
-
 
 
 
