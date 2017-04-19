@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using Shop.DAL;
 using Shop.Data;
 using Shop.Models;
 using Shop.Web.ViewModels.Admin;
@@ -42,35 +43,36 @@ namespace Shop.Web.Controllers
            
         }
 
-        //public ActionResult ManageUser(string id)
-        //{
-        //    if (User.IsInRole("Administrator"))
-        //    {
-                //    var user = UserManager.
-                //    using (var context = new ShopContext()) 
-                //    {
+        public ActionResult ManageUser(string id)
+        {
+            if (User.IsInRole("Administrator"))
+            {
+                var repo = new ProductRepository();
+                var user = repo.GetUserById(id);
+                    using (var context = new ShopContext())
+                {
 
 
-                //        var model = new ManageUserViewModel
-                //        {
+                    var model = new ManageUserViewModel
+                    {
 
-                //FirstName = user.FirstName,
-                //LastName = user.LastName,
-                //Email = user.Email,
-                //UserName = user.UserName,
-                //LockoutEnabled = user.LockoutEnabled,
-                //ProfilePicture = user.ProfilePicture,
-                //LockoutEndDateUtc = user.LockoutEndDateUtc,
-                //AccessFailedCounter = user.AccessFailedCount
-                //        };
-                //        return View(/*model*/);
-                //    }
-                //}
-                //else
-                //{
-                //    return new HttpNotFoundResult();
-                //}
-           // }
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        UserName = user.UserName,
+                        LockoutEnabled = user.LockoutEnabled,
+                        ProfilePicture = user.ProfilePicture,
+                        LockoutEndDateUtc = user.LockoutEndDateUtc,
+                        AccessFailedCounter = user.AccessFailedCount
+                    };
+                    return View(model);
+                }
+            }
+            else
+            {
+                return new HttpNotFoundResult();
+            }
+        }
 
         // GET: Admin/Details/5
         public ActionResult Details(int id)

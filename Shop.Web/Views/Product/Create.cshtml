@@ -1,0 +1,83 @@
+﻿@model Shop.Web.ViewModels.Products.CreateProductVM
+@using Shop.Web.Controllers
+@{
+    ProductController productCtrl = new ProductController();
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/registerUser.css" type="text/css" />
+    <script src="~/Scripts/custom/priviewImage.js"></script>
+</head>
+
+<h2>Upload new product</h2>
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Title)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ShortDescription, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ShortDescription, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ShortDescription)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = "15" })
+            @Html.ValidationMessageFor(m => m.Description)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Price, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Price)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Choose categories", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @{
+                for (var i = 0; i < Model.Categories.Count; i++)
+                {
+                    <div>
+                        @Html.CheckBoxFor(m => m.Categories[i].Checked,
+                                            new { @name = Model.Categories[i].Id })
+                        @Model.Categories[i].Name
+                        @Html.HiddenFor(m => m.Categories[i].Id)
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="col-md-10 reg-item">
+        <div class="image-wrapper">
+            <img class="img-responsive" id="file" src="#" alt="Profile picture">
+        </div>
+        @Html.TextBoxFor(m => m.ProductImage, new
+                                            {
+                                                @class = "col-md-offset-2 btn btn-default",
+                                                type = "file",
+                                                @onchange = "previewImage()"
+                                            })
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Submit" />
+        </div>
+    </div>
+                }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -112,7 +112,7 @@ namespace Shop.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        Description = c.String(nullable: false, maxLength: 20),
+                        Description = c.String(nullable: false, maxLength: 30),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -124,10 +124,12 @@ namespace Shop.Data.Migrations
                         Title = c.String(nullable: false, maxLength: 20),
                         ShortDescription = c.String(nullable: false, maxLength: 50),
                         Description = c.String(nullable: false, maxLength: 500),
-                        CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         OwnerId = c.String(maxLength: 128),
+                        ProductImage = c.Binary(),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.OwnerId)
@@ -153,26 +155,28 @@ namespace Shop.Data.Migrations
                 "dbo.CommentLikes",
                 c => new
                     {
-                        CommentId = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Username = c.String(nullable: false),
                         LikeIt = c.Boolean(nullable: false),
                         DislikeIt = c.Boolean(nullable: false),
+                        CommentId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.CommentId)
-                .ForeignKey("dbo.Comments", t => t.CommentId)
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Comments", t => t.CommentId, cascadeDelete: true)
                 .Index(t => t.CommentId);
             
             CreateTable(
                 "dbo.ProductLikes",
                 c => new
                     {
-                        ProductId = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Username = c.String(nullable: false),
                         LikeIt = c.Boolean(nullable: false),
                         DislikeIt = c.Boolean(nullable: false),
+                        ProductId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ProductId)
-                .ForeignKey("dbo.Products", t => t.ProductId)
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
                 .Index(t => t.ProductId);
             
             CreateTable(

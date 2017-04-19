@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Category
     {
@@ -15,8 +16,11 @@
         [Required]
         public string Name { get; set; }
 
+        [NotMapped]
+        public bool Checked { get; set; }
+
         [Required]
-        [StringLength(20, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
+        [StringLength(30, ErrorMessage = "The {0} must be between {2} and {1} characters long.", MinimumLength = 5)]
         public string Description { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

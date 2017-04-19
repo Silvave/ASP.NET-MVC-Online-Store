@@ -10,10 +10,9 @@
     overflow: hidden;
     border: 1px dashed #808080;
     border-radius: 10px;
-
 }
 #file {
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;

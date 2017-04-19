@@ -32,7 +32,6 @@
 
                 if (result.Succeeded)
                 {
-
                     userManager.AddToRole(user.Id, roleName);
                 }
             }

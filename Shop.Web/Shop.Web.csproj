@@ -213,6 +213,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -242,6 +243,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Products\CreateProductVM.cs" />
+    <Compile Include="ViewModels\Products\ListProductsVM.cs" />
+    <Compile Include="ViewModels\Products\ProductDetailsVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminContent\blank-page.html" />
@@ -335,8 +339,11 @@
     <Content Include="AdminContent\LICENSE" />
     <Content Include="AdminContent\README.md" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="images\no-photo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\noImage.js" />
+    <Content Include="Scripts\custom\priviewImage.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -390,8 +397,18 @@
     <Content Include="Views\Account\ProfilePageView.cshtml" />
     <Content Include="Views\Admin\ManageUser.cshtml" />
     <Content Include="Views\Admin\ManageProduct.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Products.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Shop.DAL\Shop.DAL.csproj">
+      <Project>{d9936c7a-fbcd-4b06-938d-d26bfd4b8be8}</Project>
+      <Name>Shop.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shop.Data\Shop.Data.csproj">
       <Project>{38378988-f961-4650-868f-826298cd7488}</Project>
       <Name>Shop.Data</Name>

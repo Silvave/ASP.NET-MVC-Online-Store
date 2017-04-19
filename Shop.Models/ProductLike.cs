@@ -6,7 +6,7 @@
     public class ProductLike
     {
         [Key]
-        public int ProductId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Username { get; set; }
@@ -14,6 +14,8 @@
         public bool LikeIt { get; set; }
 
         public bool DislikeIt { get; set; }
+
+        public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }

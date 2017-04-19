@@ -28,5 +28,20 @@ namespace Shop.Data
         public virtual DbSet<ProductLike> ProductLikes { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<Town> Towns { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductLike>()
+                .HasRequired(l => l.Product)
+                .WithMany(p => p.Likes)
+                .HasForeignKey(l => l.ProductId);
+
+            modelBuilder.Entity<CommentLike>()
+                .HasRequired(l => l.Comment)
+                .WithMany(c => c.Likes)
+                .HasForeignKey(l => l.CommentId);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

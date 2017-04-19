@@ -1,0 +1,32 @@
+﻿@model List<Shop.Web.ViewModels.Products.ListProductsVM>
+
+@*<head>
+    <script src="~/Scripts/custom/noImage.js"></script>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+</head>*@
+
+@foreach (var product in Model)
+{
+    <article class="product-container">
+        <div class="image-wrapper">
+            <img src="data:image;base64, @product.ProductImage" class="display-img" style="width: 200px; height: auto" />
+        </div>
+        <h3 class="product-title">@Html.ActionLink(@product.Title, "Details", "Product", new { id = product.Id }, null)</h3>
+        <div class="post-body">
+            @product.Price
+            @Html.Raw(product.ShortDescription)
+            @Html.ActionLink("Read more...", "Details", "Product")
+        </div>
+        <div class="date">
+            <span class="created-on">@product.CreatedOn</span>
+        </div>
+    </article>
+    @*<script>
+        $(document).ready(function () {
+            let picture = @Url.Content(@"~\images\no-photo.png");
+            if (@product.ProductImage.IsEmpty();)
+                $('.display-img').attr('src', picture);
+        });
+    </script>*@
+}
+

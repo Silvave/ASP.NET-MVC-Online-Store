@@ -5,6 +5,7 @@ namespace Shop.Data.Migrations
     using System.Collections.Generic;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using System;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ShopContext>
     {
@@ -30,6 +31,14 @@ namespace Shop.Data.Migrations
             UserSeeder.CreateOrUpdateUser(roleManager, "Customer", userManager, "peter@pesho.com", 
                 "velikiq", "peter123", "Petar", "Petrov", 21);
 
+            context.Categories.AddOrUpdate(
+                c => c.Name,
+                new Category { Name = "books", Description = "Books for programming" },
+                new Category { Name = "electronicts", Description = "Stuff to write code" },
+                new Category { Name = "beverages", Description = "While code - drink" }
+                );
+
+           
 
             //context.Addresses.AddOrUpdate(
             //    a => a.StreetName,
