@@ -1,0 +1,34 @@
+﻿@model List<Shop.Models.Product>
+
+@*<head>
+        <script src="~/Scripts/custom/noImage.js"></script>
+        <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    </head>*@
+
+@foreach (var product in Model)
+{
+    <article class="product-container">
+        <h3 class="product-title">@Html.ActionLink(@product.Title, "Details", "Product", new { id = product.Id }, null)</h3>
+        <div class="post-body">
+            <div><h4>Price: @product.Price</h4></div>
+            @Html.Raw(product.ShortDescription)
+            @Html.ActionLink("Read more...", "Details", "Product", new { id = product.Id }, null)
+        </div>
+        <div class="date">
+            <span class="created-on">@product.CreatedOn</span>
+        </div>
+        @Html.HiddenFor(x => product.Id)
+        <h2>@Html.ActionLink("Remove from cart", "Remove", "Cart", new { id = product.Id}, new { @class = "button", @customAction = "remove" })</h2>
+    </article>
+    <br />
+    <hr />
+    @*<script>
+            $(document).ready(function () {
+                let picture = @Url.Content(@"~\images\no-photo.png");
+                if (@product.ProductImage.IsEmpty();)
+                    $('.display-img').attr('src', picture);
+            });
+        </script>*@
+}
+<h2>Total price: @ViewBag.TotalPrice</h2>
+

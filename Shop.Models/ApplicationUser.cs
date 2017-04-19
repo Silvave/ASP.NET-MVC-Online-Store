@@ -25,11 +25,6 @@
             return userIdentity;
         }
 
-        public ApplicationUser()
-        {
-            this.Products = new HashSet<Product>();
-        }
-
         [Required]
         [StringLength(10, ErrorMessage = "The {0} must be between {2} and {1} characters long.",
             MinimumLength = 2)]
@@ -48,6 +43,5 @@
 
         public bool IsDeleted { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
     }
 }

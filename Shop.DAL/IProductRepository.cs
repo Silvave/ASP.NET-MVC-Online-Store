@@ -25,5 +25,6 @@
         void EditProduct(Product editedProduct);
 
         void DeleteProduct(int id);
+        
     }
 }

@@ -67,9 +67,17 @@
     <Compile Include="Migrations\201704181310325_AddedUserIsDeletedField.Designer.cs">
       <DependentUpon>201704181310325_AddedUserIsDeletedField.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704191745115_AddCategoryProductsConnection.cs" />
-    <Compile Include="Migrations\201704191745115_AddCategoryProductsConnection.Designer.cs">
-      <DependentUpon>201704191745115_AddCategoryProductsConnection.cs</DependentUpon>
+    <Compile Include="Migrations\201704191739575_UpdateNikolay.cs" />
+    <Compile Include="Migrations\201704191739575_UpdateNikolay.Designer.cs">
+      <DependentUpon>201704191739575_UpdateNikolay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704191916014_AddUserCart.cs" />
+    <Compile Include="Migrations\201704191916014_AddUserCart.Designer.cs">
+      <DependentUpon>201704191916014_AddUserCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704192317179_Resolve_Merge_conflict_Migraiton.cs" />
+    <Compile Include="Migrations\201704192317179_Resolve_Merge_conflict_Migraiton.Designer.cs">
+      <DependentUpon>201704192317179_Resolve_Merge_conflict_Migraiton.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\RoleSeeder.cs" />
@@ -94,8 +102,14 @@
     <EmbeddedResource Include="Migrations\201704181310325_AddedUserIsDeletedField.resx">
       <DependentUpon>201704181310325_AddedUserIsDeletedField.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704191745115_AddCategoryProductsConnection.resx">
-      <DependentUpon>201704191745115_AddCategoryProductsConnection.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704191739575_UpdateNikolay.resx">
+      <DependentUpon>201704191739575_UpdateNikolay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704191916014_AddUserCart.resx">
+      <DependentUpon>201704191916014_AddUserCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704192317179_Resolve_Merge_conflict_Migraiton.resx">
+      <DependentUpon>201704192317179_Resolve_Merge_conflict_Migraiton.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
