@@ -1,12 +1,12 @@
 ﻿@model Shop.Web.ViewModels.Admin.ManageUserViewModel
 @{
-    ViewBag.Title = "Manage User Page";
+    ViewBag.Title = "Manage User";
 }
 
 <h2>@ViewBag.Title.</h2>
-
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
+    @Html.HiddenFor(model => model.ProfilePicture)
     @if (Model.ProfilePicture == null)
     {
         <img src="../../Content/default-pic.png" />
@@ -15,10 +15,112 @@
     {
         <img src="data:image;base64,@System.Convert.ToBase64String(Model.ProfilePicture)" />
     }
-    <h4>Manage User Settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-       
-       
-    </dl>
+    @using (Html.BeginForm("ManageUser", "Admin", FormMethod.Post))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-responsive">
+                        <caption>User Properties</caption>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    @Html.LabelFor(model => model.UserName,
+                                               htmlAttributes: new { @class = "control-label col-md-2" })
+                                </th>
+                                <td>
+                                    @Html.ValueFor(model => model.UserName)
+                                    @Html.HiddenFor(model => model.UserName)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    @Html.LabelFor(model => model.FirstName,
+                               htmlAttributes: new { @class = "control-label col-md-2" })
+                                </th>
+                                <td>
+
+                                    @Html.ValueFor(model => model.FirstName)
+                                    @Html.HiddenFor(x => x.FirstName)
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    @Html.LabelFor(model => model.LastName,
+                               htmlAttributes: new { @class = "control-label col-md-2" })
+                                </th>
+                                <td>
+
+                                    @Html.ValueFor(model => model.LastName)
+                                    @Html.HiddenFor(x => x.LastName)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    @Html.LabelFor(model => model.Email,
+                               htmlAttributes: new { @class = "control-label col-md-2" })
+                                </th>
+                                <td>
+
+                                    @Html.ValueFor(model => model.Email)
+                                    @Html.HiddenFor(x => x.Email)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Lockout Date:</th>
+                                @Html.HiddenFor(model => model.LockoutEndDateUtc)
+                                @if (@Model.LockoutEndDateUtc == null)
+                                {
+                                    <td>
+                                        The account is not locked!
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Model.LockoutEndDateUtc
+                                    </td>
+                                }
+                            </tr>
+                            <tr>
+                                <th scope="row">Is Lockout Enabled:</th>
+                                <td>
+
+                                    @Html.EditorFor(m => m.LockoutEnabled, new { @class = "checkbox" })
+
+                                </td>
+                            </tr>
+                            <tr>
+                                @Html.HiddenFor(model => model.AccessFailedCounter)
+                                <th scope="row">Access Failed Counter:</th>
+                                <td>@Model.AccessFailedCounter</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Is Account Locked</th>
+                                <td>
+                                    <input type="checkbox"/>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    Actions:
+                                </th>
+                                <td>
+                                    
+                                    <button class="btn bg-primary">Lock Account</button>
+                                    <button class="btn bg-primary">Unlock Account</button>
+                                </td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn bg-primary" value="Save"/>
+    }
 </div>

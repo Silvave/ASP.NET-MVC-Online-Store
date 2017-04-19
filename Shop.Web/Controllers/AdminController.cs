@@ -15,62 +15,82 @@ using System.Web.Security;
 
 namespace Shop.Web.Controllers
 {
-    //[Authorize(Roles ="Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
         // GET: Admin
         public ActionResult Index()
         {
-           
+
             if (User.IsInRole("Administrator"))
             {
-                using (var context = new ShopContext())
+                using (var context = new ProductRepository())
                 {
                     var model = new AdminIndexViewModel
                     {
                         AdminName = User.Identity.Name,
-                        Users = context.Users.ToList(),
-                        Products = context.Products.ToList()
+                        Users = context.GetAllUsers().ToList(),
+                        Products = context.GetAllProducts().ToList()
 
-                    };
-                    return View(model);
-                } 
-            }
-            else
-            {
-                return new HttpNotFoundResult();
-            }
-           
-        }
-
-        public ActionResult ManageUser(string id)
-        {
-            if (User.IsInRole("Administrator"))
-            {
-                var repo = new ProductRepository();
-                var user = repo.GetUserById(id);
-                    using (var context = new ShopContext())
-                {
-
-
-                    var model = new ManageUserViewModel
-                    {
-
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        Email = user.Email,
-                        UserName = user.UserName,
-                        LockoutEnabled = user.LockoutEnabled,
-                        ProfilePicture = user.ProfilePicture,
-                        LockoutEndDateUtc = user.LockoutEndDateUtc,
-                        AccessFailedCounter = user.AccessFailedCount
                     };
                     return View(model);
                 }
             }
             else
             {
-                return new HttpNotFoundResult();
+                return RedirectToAction("Error", "Shared");
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult ManageUser(string id)
+        {
+            if (User.IsInRole("Administrator") && id != null)
+            {
+                using (var repo = new ProductRepository())
+                {
+                    var user = repo.GetUserById(id);
+                    using (var context = new ShopContext())
+                    {
+                        var model = new ManageUserViewModel
+                        {
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Email = user.Email,
+                            UserName = user.UserName,
+                            LockoutEnabled = user.LockoutEnabled,
+                            ProfilePicture = user.ProfilePicture,
+                            LockoutEndDateUtc = user.LockoutEndDateUtc,
+                            AccessFailedCounter = user.AccessFailedCount
+                        };
+                        return View(model);
+                    }
+                }
+            }
+            else
+            {
+
+                return RedirectToAction("Error", "Shared");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ManageUser(ManageUserViewModel manageUserViewModel)
+        {
+            using (ProductRepository _repo = new ProductRepository())
+            {
+                var user = _repo.GetUserById(manageUserViewModel.Id);
+
+                if (ModelState.IsValid)
+                {
+                    user.LockoutEnabled = manageUserViewModel.LockoutEnabled;
+                    _repo.Save();
+
+                    return Redirect(Request.RawUrl);
+                }
+
+                return RedirectToAction("Error", "Shared");
             }
         }
 
@@ -83,7 +103,7 @@ namespace Shop.Web.Controllers
             }
             else
             {
-                return new HttpNotFoundResult();
+                return RedirectToAction("Error", "Shared");
             }
         }
 
@@ -96,7 +116,7 @@ namespace Shop.Web.Controllers
             }
             else
             {
-                return new HttpNotFoundResult();
+                return RedirectToAction("Error", "Shared");
             }
         }
 
@@ -119,9 +139,9 @@ namespace Shop.Web.Controllers
             }
             else
             {
-                return new HttpNotFoundResult();
+                return RedirectToAction("Error", "Shared");
             }
-          
+
         }
 
         // GET: Admin/Edit/5
@@ -133,9 +153,9 @@ namespace Shop.Web.Controllers
             }
             else
             {
-                return new HttpNotFoundResult();
+                return RedirectToAction("Error", "Shared");
             }
-         
+
         }
 
         // POST: Admin/Edit/5
@@ -157,9 +177,9 @@ namespace Shop.Web.Controllers
             }
             else
             {
-                return new HttpNotFoundResult();
+                return RedirectToAction("Error", "Shared");
             }
-           
+
         }
 
         // GET: Admin/Delete/5
@@ -187,9 +207,9 @@ namespace Shop.Web.Controllers
             }
             else
             {
-                return new HttpNotFoundResult();
+                return RedirectToAction("Error", "Shared");
             }
-            
+
         }
     }
 }

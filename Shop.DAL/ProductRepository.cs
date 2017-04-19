@@ -22,6 +22,15 @@
         {
             return _context.Products.Where(p => p.Deleted == false).ToList();
         }
+        public IList<Product> GetAllProducts()
+        {
+            return _context.Products.ToList();
+        }
+
+        public IList<ApplicationUser> GetAllUsers()
+        {
+            return _context.Users.ToList();
+        }
 
         public Product GetProductById(int id)
         {
@@ -42,7 +51,7 @@
             }
             product.Categories = productList;
 
-            product.Owner = _context.Users.FirstOrDefault(u => u.UserName == username);
+            //product.Owner = _context.Users.FirstOrDefault(u => u.UserName == username);
 
             _context.Products.Add(product);
             Save();

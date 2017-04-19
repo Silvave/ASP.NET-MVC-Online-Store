@@ -10,13 +10,17 @@
 
         IList<Product> GetProducts();
 
-        void CreateProduct(Product product, string username);
+        IList<ApplicationUser> GetAllUsers();
+
+        IList<Product> GetAllProducts();
 
         IList<Category> GetCategories();
 
         Product GetProductById(int id);
 
         ApplicationUser GetUserById(string id);
+
+        void CreateProduct(Product product, string username);
 
         void EditProduct(Product editedProduct);
 
