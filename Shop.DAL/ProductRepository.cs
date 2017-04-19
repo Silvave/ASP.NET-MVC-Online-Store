@@ -47,17 +47,6 @@
             return _context.Categories.ToList();
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
-        public Product Details(int id)
-        {
-            Product targetProduct = _context.Products.Where(p => p.Id == id).FirstOrDefault();
-            return targetProduct;
-        }
-
         public void EditProduct(Product editedProduct)
         {
             var productToEdit = _context.Products.FirstOrDefault(p => p.Id == editedProduct.Id);
@@ -77,6 +66,10 @@
             Save();
         }
 
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
 
         #region dispose
         private bool disposed = false;
