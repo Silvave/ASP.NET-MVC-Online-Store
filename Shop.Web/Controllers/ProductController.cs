@@ -3,8 +3,8 @@
     using AutoMapper;
     using DAL;
     using Models;
+    using System;
     using System.Collections.Generic;
-    using System.Web;
     using System.Web.Mvc;
     using ViewModels.Products;
 
@@ -68,8 +68,8 @@
             return RedirectToAction("Index", "Product");
         }
 
+        // GET: Product/Details/1
         [HttpGet]
-        // GET: Admin/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -84,11 +84,66 @@
             return View("Details", productDetailsVM);
         }
 
-        //[HttpPost]
-        //public ActionResult Details()
-        //{
-        //    return RedirectToAction("Details", "Product");
-        //}
+        // GET: Product/Edit/1
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Error", "Shared");
+            }
+            var product = _productRepository.GetProductById((int)id);
+
+            var productDetailsVM = Mapper.Instance.Map<ProductDetailsVM>(product);
+
+            return View("Edit", productDetailsVM);
+        }
+
+        // POST: Product/Edit/1
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ProductDetailsVM productDetails)
+        {
+            var productToEdit = Mapper.Instance.Map<Product>(productDetails);
+
+            productToEdit.ModifiedOn = DateTime.Now;
+
+            if (ModelState.IsValid)
+            {
+                _productRepository.EditProduct(productToEdit);
+
+                return RedirectToAction("Index", "Product");
+            }
+
+            return RedirectToAction("Error", "Shared");
+        }
+
+        // GET: Product/Delete/1
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Error", "Shared");
+            }
+            var product = _productRepository.GetProductById((int)id);
+
+            var productDetailsVM = Mapper.Instance.Map<ProductDetailsVM>(product);
+
+            return View("Delete", productDetailsVM);
+        }
+
+        // POST: Delete/Product/1
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(ProductDetailsVM productVMToDel)
+        {
+            _productRepository.DeleteProduct(productVMToDel.Id);
+
+            return RedirectToAction("Index", "Product");
+        }
 
         #region Helpers
 

@@ -41,12 +41,20 @@
                 conf.CreateMap<Product, ProductDetailsVM>()
                 .ForMember(dest => dest.ProductImage,
                             mo => mo.MapFrom(src => BytesToBase64(src.ProductImage)));
+                conf.CreateMap<ProductDetailsVM, Product>()
+                .ForMember(dest => dest.ProductImage,
+                            mo => mo.MapFrom(src => Base64ToBytes(src.ProductImage)));
             });
         }
 
         private string BytesToBase64(byte[] productImage)
         {
             return Convert.ToBase64String(productImage);
+        }
+
+        private byte[] Base64ToBytes(string productImage)
+        {
+            return Convert.FromBase64String(productImage);
         }
 
         private static byte[] FileToBytes(HttpPostedFileBase imageFile)

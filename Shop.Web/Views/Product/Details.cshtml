@@ -52,4 +52,8 @@
             </ul>
         </div>
     </div>
+    <div class="button-group">
+        @Html.ActionLink("Edit", "Edit", "Product",new { id = Model.Id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Delete", "Delete", "Product",new { id = Model.Id }, new { @class = "btn btn-primary" })
+    </div>
 </div>

@@ -335,8 +335,10 @@
     <Content Include="AdminContent\LICENSE" />
     <Content Include="AdminContent\README.md" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="images\no-photo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\noImage.js" />
     <Content Include="Scripts\custom\priviewImage.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -392,6 +394,8 @@
     <Content Include="Views\Product\Products.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop.DAL\Shop.DAL.csproj">

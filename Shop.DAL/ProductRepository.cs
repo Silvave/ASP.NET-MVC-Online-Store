@@ -19,7 +19,7 @@
 
         public IList<Product> GetProducts()
         {
-            return _context.Products.ToList();
+            return _context.Products.Where(p => p.Deleted == false).ToList();
         }
 
         public Product GetProductById(int id)
@@ -57,6 +57,26 @@
             Product targetProduct = _context.Products.Where(p => p.Id == id).FirstOrDefault();
             return targetProduct;
         }
+
+        public void EditProduct(Product editedProduct)
+        {
+            var productToEdit = _context.Products.FirstOrDefault(p => p.Id == editedProduct.Id);
+            productToEdit.Title = editedProduct.Title;
+            productToEdit.ShortDescription = editedProduct.ShortDescription;
+            productToEdit.Description = editedProduct.Description;
+            productToEdit.Price = editedProduct.Price;
+            productToEdit.ModifiedOn = editedProduct.ModifiedOn;
+
+            Save();
+        }
+
+        public void DeleteProduct(int id)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Id == id);
+            product.Deleted = true;
+            Save();
+        }
+
 
         #region dispose
         private bool disposed = false;

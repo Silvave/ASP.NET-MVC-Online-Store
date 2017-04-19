@@ -15,5 +15,9 @@
         IList<Category> GetCategories();
 
         Product GetProductById(int id);
+
+        void EditProduct(Product editedProduct);
+
+        void DeleteProduct(int id);
     }
 }
