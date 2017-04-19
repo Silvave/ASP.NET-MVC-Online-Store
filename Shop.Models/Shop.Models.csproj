@@ -68,6 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="Town.cs" />
+    <Compile Include="UserCart.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

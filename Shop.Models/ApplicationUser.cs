@@ -40,5 +40,6 @@
         public byte[] ProfilePicture { get; set; }
 
         public bool IsDeleted { get; set; }
+
     }
 }

@@ -67,6 +67,14 @@
     <Compile Include="Migrations\201704181310325_AddedUserIsDeletedField.Designer.cs">
       <DependentUpon>201704181310325_AddedUserIsDeletedField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704191739575_UpdateNikolay.cs" />
+    <Compile Include="Migrations\201704191739575_UpdateNikolay.Designer.cs">
+      <DependentUpon>201704191739575_UpdateNikolay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704191916014_AddUserCart.cs" />
+    <Compile Include="Migrations\201704191916014_AddUserCart.Designer.cs">
+      <DependentUpon>201704191916014_AddUserCart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\RoleSeeder.cs" />
     <Compile Include="Migrations\UserSeeder.cs" />
@@ -89,6 +97,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704181310325_AddedUserIsDeletedField.resx">
       <DependentUpon>201704181310325_AddedUserIsDeletedField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704191739575_UpdateNikolay.resx">
+      <DependentUpon>201704191739575_UpdateNikolay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704191916014_AddUserCart.resx">
+      <DependentUpon>201704191916014_AddUserCart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

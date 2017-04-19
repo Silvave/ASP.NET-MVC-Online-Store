@@ -25,7 +25,8 @@
 
         public Product GetProductById(int id)
         {
-            return _context.Products.FirstOrDefault(p => p.Id == id);
+            Product product = _context.Products.FirstOrDefault(p => p.Id == id);
+            return product;
         }
 
         public ApplicationUser GetUserById(string id)
@@ -65,12 +66,43 @@
             Save();
         }
 
+        public void AddProductToCart(int? productId, string ownerId)
+        {
+            UserCart cart = new UserCart();
+            cart.OwnerId = ownerId;
+            cart.ProductId = productId ?? -1;
+            //_context.Entry(owner).State = System.Data.Entity.EntityState.Added;
+            //_context.Entry(product).State = System.Data.Entity.EntityState.Added;
+            _context.UsersCarts.Add(cart);
+            _context.SaveChanges();
+        }
+
+        public void RemoveProductFromCart(int productId)
+        {
+            _context.UsersCarts.Remove(_context.UsersCarts.Where(x => x.ProductId == productId).First());
+            Save();
+        }
+
+        public IEnumerable<Product> GetUserCart(string userId)
+        {
+            List<int> productIds = _context.UsersCarts.Where(uc => uc.OwnerId == userId).Select(x => x.ProductId).ToList();
+            List<Product> result = new List<Product>();
+            foreach (var productId in productIds)
+            {
+                Product currentProduct = _context.Products.Where(x => x.Id == productId).First();
+                result.Add(currentProduct);
+            }
+            return result;
+        }
+
         public void DeleteProduct(int id)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == id);
             product.Deleted = true;
             Save();
         }
+
+        
 
         public void Save()
         {

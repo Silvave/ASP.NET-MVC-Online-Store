@@ -28,6 +28,7 @@ namespace Shop.Data
         public virtual DbSet<ProductLike> ProductLikes { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<Town> Towns { get; set; }
+        public virtual DbSet<UserCart> UsersCarts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

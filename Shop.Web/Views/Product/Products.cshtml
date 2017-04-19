@@ -15,12 +15,15 @@
         <div class="post-body">
             @product.Price
             @Html.Raw(product.ShortDescription)
-            @Html.ActionLink("Read more...", "Details", "Product")
+            @Html.ActionLink("Read more...", "Details", "Product", new { id = product.Id }, null)
+            <h2>@Html.ActionLink("Add to cart", "Index", "Cart", new { id = product.Id }, new { @class = "button" })</h2>
         </div>
         <div class="date">
             <span class="created-on">@product.CreatedOn</span>
         </div>
     </article>
+    <br />
+    <hr />
     @*<script>
         $(document).ready(function () {
             let picture = @Url.Content(@"~\images\no-photo.png");
