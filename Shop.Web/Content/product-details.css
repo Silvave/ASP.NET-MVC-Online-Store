@@ -8,6 +8,6 @@
     margin-top: 70px;
 }
 
-.product-form {
-    /*text-align: center;*/
+.description {
+    word-wrap: break-word;
 }

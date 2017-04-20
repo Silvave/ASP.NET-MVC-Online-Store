@@ -13,6 +13,7 @@ namespace Shop.Data.Migrations
         {
             AutomaticMigrationsEnabled = false;
             ContextKey = "Data.ShopContext";
+            
         }
 
         protected override void Seed(ShopContext context)

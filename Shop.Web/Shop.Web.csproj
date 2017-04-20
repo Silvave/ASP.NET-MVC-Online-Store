@@ -211,6 +211,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -231,7 +232,6 @@
     <Compile Include="ViewModels\Admin\DeleteUserViewModel.cs" />
     <Compile Include="ViewModels\Admin\EditUserViewModel.cs" />
     <Compile Include="ViewModels\Admin\LockUserAccountViewModel.cs" />
-    <Compile Include="ViewModels\Admin\ManageProductViewModel.cs" />
     <Compile Include="ViewModels\Admin\ManageUserViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
@@ -284,8 +284,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\default-pic.png" />
+    <Content Include="images\default-pic.png" />
     <Content Include="Content\delete-product.css" />
+    <Content Include="Content\list-products.css" />
     <Content Include="Content\product-details.css" />
     <Content Include="Content\register-user.css" />
     <Content Include="favicon.ico" />
@@ -341,6 +342,7 @@
     <Content Include="AdminContent\LICENSE" />
     <Content Include="AdminContent\README.md" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="images\home-background.png" />
     <Content Include="images\no-photo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -372,8 +374,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -398,13 +398,13 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Account\ProfilePageView.cshtml" />
     <Content Include="Views\Admin\ManageUser.cshtml" />
-    <Content Include="Views\Admin\ManageProduct.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop.DAL\Shop.DAL.csproj">

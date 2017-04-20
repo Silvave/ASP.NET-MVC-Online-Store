@@ -154,20 +154,6 @@ namespace Shop.Data.Migrations
                 .Index(t => t.ProductId);
             
             CreateTable(
-                "dbo.CommentLikes",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Username = c.String(nullable: false),
-                        LikeIt = c.Boolean(nullable: false),
-                        DislikeIt = c.Boolean(nullable: false),
-                        CommentId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Comments", t => t.CommentId, cascadeDelete: true)
-                .Index(t => t.CommentId);
-            
-            CreateTable(
                 "dbo.ProductLikes",
                 c => new
                     {
@@ -199,6 +185,16 @@ namespace Shop.Data.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
+            CreateTable(
+                "dbo.UserCarts",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ProductId = c.Int(nullable: false),
+                        OwnerId = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.ProductCategories",
@@ -236,7 +232,6 @@ namespace Shop.Data.Migrations
             DropForeignKey("dbo.Products", "OwnerId", "dbo.AspNetUsers");
             DropForeignKey("dbo.ProductLikes", "ProductId", "dbo.Products");
             DropForeignKey("dbo.Comments", "ProductId", "dbo.Products");
-            DropForeignKey("dbo.CommentLikes", "CommentId", "dbo.Comments");
             DropForeignKey("dbo.ProductCategories", "Category_Id", "dbo.Categories");
             DropForeignKey("dbo.ProductCategories", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.Addresses", "UserId", "dbo.AspNetUsers");
@@ -251,7 +246,6 @@ namespace Shop.Data.Migrations
             DropIndex("dbo.ProductCategories", new[] { "Product_Id" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.ProductLikes", new[] { "ProductId" });
-            DropIndex("dbo.CommentLikes", new[] { "CommentId" });
             DropIndex("dbo.Comments", new[] { "ProductId" });
             DropIndex("dbo.Products", new[] { "OwnerId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
@@ -264,10 +258,10 @@ namespace Shop.Data.Migrations
             DropIndex("dbo.Addresses", new[] { "TownId" });
             DropTable("dbo.TagProducts");
             DropTable("dbo.ProductCategories");
+            DropTable("dbo.UserCarts");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Tags");
             DropTable("dbo.ProductLikes");
-            DropTable("dbo.CommentLikes");
             DropTable("dbo.Comments");
             DropTable("dbo.Products");
             DropTable("dbo.Categories");

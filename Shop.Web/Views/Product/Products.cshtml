@@ -1,32 +1,28 @@
 ﻿@model List<Shop.Web.ViewModels.Products.ListProductsVM>
 
-@*<head>
-    <script src="~/Scripts/custom/noImage.js"></script>
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-</head>*@
+<head>
+    <link href="~/Content/list-products.css" rel="stylesheet" type="text/css"/>
+</head>
 
 @foreach (var product in Model)
 {
-    <li class="product-container">
+    <li class="product-item">
         <div class="image-wrapper">
-            <img src="data:image;base64, @product.ProductImage" class="display-img" style="width: 200px; height: auto" />
+            @if (product.ProductImage.Count() == 0)
+            {
+                <img src="../../images/no-photo.png" class="product-img" />
+            }
+            else
+            {
+                <img src="data:image;base64, @product.ProductImage" class="product-img" />
+            }
         </div>
         <h3 class="product-title">@Html.ActionLink(@product.Title, "Details", "Product", new { id = product.Id }, null)</h3>
         <div class="post-body">
-            @product.Price
-            @Html.Raw(product.ShortDescription)
-            @Html.ActionLink("Read more...", "Details", "Product")
-        </div>
-        <div class="date">
-            <span class="created-on">@product.CreatedOn</span>
+            <p class="short-description">@Html.Raw(product.ShortDescription)</p>
+            <p class="price">@product.Price</p>
+            @Html.ActionLink("Add to cart", "Index", "Cart", new { id = product.Id }, new { @class = "btn btn-default" })
         </div>
     </li>
-    @*<script>
-        $(document).ready(function () {
-            let picture = @Url.Content(@"~\images\no-photo.png");
-            if (@product.ProductImage.IsEmpty();)
-                $('.display-img').attr('src', picture);
-        });
-    </script>*@
 }
 

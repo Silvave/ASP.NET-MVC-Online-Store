@@ -7,11 +7,11 @@
     using System.Linq;
     using Microsoft.AspNet.Identity;
 
-    public class ProductRepository : IProductRepository, IDisposable
+    public class ShopRepository : IShopRepository, IDisposable
     {
         private ShopContext _context;
 
-        public ProductRepository()
+        public ShopRepository()
         {
             _context = new ShopContext();
         }
@@ -22,23 +22,40 @@
         {
             return _context.Products.Where(p => p.Deleted == false).ToList();
         }
+        public IList<Product> GetAllProducts()
+        {
+            return _context.Products.ToList();
+        }
+
+        public IList<ApplicationUser> GetAllUsers()
+        {
+            return _context.Users.ToList();
+        }
 
         public IList<Product> GetTop3Products()
         {
             return _context.Products
                 .Where(p => p.Deleted == false)
-                .OrderByDescending(p => p.Likes.Where(l => l.LikeIt == true).Count())
+                .OrderByDescending(p => p.Likes.Where(l => l.LikeIt).Count())
+                .ThenBy(p => p.Likes.Where(l => l.DislikeIt).Count())
+                .Take(3)
                 .ToList();
         }
 
         public Product GetProductById(int id)
         {
-            return _context.Products.FirstOrDefault(p => p.Id == id);
+            Product product = _context.Products.FirstOrDefault(p => p.Id == id);
+            return product;
         }
 
         public ApplicationUser GetUserById(string id)
         {
             return _context.Users.FirstOrDefault(p => p.Id == id);
+        }
+
+        public ApplicationUser GetUserByName(string name)
+        {
+            return _context.Users.FirstOrDefault(u => u.UserName == name);
         }
 
         public void CreateProduct(Product product, string username)
@@ -72,6 +89,35 @@
             productToEdit.ModifiedOn = editedProduct.ModifiedOn;
 
             Save();
+        }
+
+        public void AddProductToCart(int? productId, string ownerId)
+        {
+            UserCart cart = new UserCart();
+            cart.OwnerId = ownerId;
+            cart.ProductId = productId ?? -1;
+            //_context.Entry(owner).State = System.Data.Entity.EntityState.Added;
+            //_context.Entry(product).State = System.Data.Entity.EntityState.Added;
+            _context.UsersCarts.Add(cart);
+            _context.SaveChanges();
+        }
+
+        public void RemoveProductFromCart(int productId)
+        {
+            _context.UsersCarts.Remove(_context.UsersCarts.Where(x => x.ProductId == productId).First());
+            Save();
+        }
+
+        public IList<Product> GetUserCart(string userId)
+        {
+            List<int> productIds = _context.UsersCarts.Where(uc => uc.OwnerId == userId).Select(x => x.ProductId).ToList();
+            List<Product> result = new List<Product>();
+            foreach (var productId in productIds)
+            {
+                Product currentProduct = _context.Products.Where(x => x.Id == productId).First();
+                result.Add(currentProduct);
+            }
+            return result;
         }
 
         public void DeleteProduct(int id)

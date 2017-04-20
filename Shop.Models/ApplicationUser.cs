@@ -5,6 +5,8 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Security.Claims;
     using System.ComponentModel.DataAnnotations;
+    using System.Collections;
+    using System.Collections.Generic;
 
     public enum Gender
     {

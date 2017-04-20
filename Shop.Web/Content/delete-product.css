@@ -31,3 +31,7 @@ main {
     background-color: #ebebeb;
     padding: 5px 20px;
 }
+
+.description {
+    word-wrap: break-word;
+}

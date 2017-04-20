@@ -33,13 +33,12 @@
                         {
                             if (user.IsDeleted)
                             {
-                                
+
                                 <tr class="danger">
                                     <th scope="row">@user.UserName</th>
                                     <td>@user.Email</td>
                                     <td>@user.FirstName</td>
                                     <td>@user.LastName</td>
-                                   
                                 </tr>
                             }
                             else
@@ -49,11 +48,9 @@
                                     <td>@user.Email</td>
                                     <td>@user.FirstName</td>
                                     <td>@user.LastName</td>
-                                    <td>@user.Id</td>
-                                    <td>@Html.ActionLink("Manage", "ManageUser",new {id = user.Id })</td>
+                                    <td>@Html.ActionLink("Manage", "ManageUser", new { id = user.Id })</td>
                                 </tr>
                             }
-
                         }
                     }
                 </tbody>
@@ -67,8 +64,8 @@
                         <th>Title</th>
                         <th>Short Description</th>
                         <th>Created On</th>
-                        <th>Owner</th>
                         <th>Price</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,14 +81,17 @@
                     {
                         foreach (var product in Model.Products)
                         {
-                            if (false) // Check if product is deleted
+                            if (product.Deleted) // Check if product is deleted
                             {
                                 <tr class="danger">
                                     <th scope="row">@product.Title</th>
                                     <td>@product.ShortDescription</td>
                                     <td>@product.CreatedOn</td>
-                                    <td>@product.Owner</td>
                                     <td>@product.Price</td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", "Product", new { id = product.Id },null)
+                                        @Html.ActionLink("Delete", "Delete", "Product", new { id = product.Id },null)
+                                    </td>
                                 </tr>
                             }
                             else
@@ -100,8 +100,11 @@
                                     <th scope="row">@product.Title</th>
                                     <td>@product.ShortDescription</td>
                                     <td>@product.CreatedOn</td>
-                                    <td>@product.Owner</td>
                                     <td>@product.Price</td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", "Product", new { id = product.Id }, null)
+                                        @Html.ActionLink("Delete", "Delete", "Product", new { id = product.Id },null)
+                                    </td>
                                 </tr>
                             }
 

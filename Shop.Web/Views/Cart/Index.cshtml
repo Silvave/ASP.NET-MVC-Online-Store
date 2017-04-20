@@ -1,0 +1,21 @@
+﻿@model List<Shop.Models.Product>
+
+@foreach (var product in Model)
+{
+    <article class="product-container">
+        <h3 class="product-title">@Html.ActionLink(@product.Title, "Details", "Product", new { id = product.Id }, null)</h3>
+        <div class="post-body">
+            <div><h4>Price: @product.Price</h4></div>
+            @Html.Raw(product.ShortDescription)
+        </div>
+        <div class="date">
+            <span class="created-on">@product.CreatedOn</span>
+        </div>
+        @Html.HiddenFor(x => product.Id)
+        <h2>@Html.ActionLink("Remove from cart", "Remove", "Cart", new { id = product.Id}, new { @class = "btn btn-default", @customAction = "remove" })</h2>
+    </article>
+    <br />
+    <hr />
+}
+<h2>Total price: @ViewBag.TotalPrice</h2>
+

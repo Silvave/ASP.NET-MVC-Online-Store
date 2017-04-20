@@ -10,16 +10,16 @@
 
     public class ProductController : Controller
     {
-        private IProductRepository _productRepository;
+        private IShopRepository _shopRepository;
 
         public ProductController()
         {
-            _productRepository = new ProductRepository();
+            _shopRepository = new ShopRepository();
         }
 
-        public ProductController(IProductRepository productRepository)
+        public ProductController(IShopRepository productRepository)
         {
-            _productRepository = productRepository;
+            _shopRepository = productRepository;
         }
 
         [HttpGet]
@@ -36,7 +36,7 @@
         {
             List<ListProductsVM> productList = new List<ListProductsVM>();
 
-            var products = _productRepository.GetProducts();
+            var products = _shopRepository.GetProducts();
             foreach (var product in products)
             {
                 productList.Add(Mapper.Instance.Map<ListProductsVM>(product));
@@ -49,7 +49,7 @@
         public ActionResult Create()
         {
             CreateProductVM createProduct = new CreateProductVM();
-            createProduct.Categories = _productRepository.GetCategories();
+            createProduct.Categories = _shopRepository.GetCategories();
 
             return View("Create", createProduct);
         }
@@ -63,7 +63,7 @@
 
             string currentUsername = User.Identity.Name;
 
-            _productRepository.CreateProduct(product, currentUsername);
+            _shopRepository.CreateProduct(product, currentUsername);
 
             return RedirectToAction("Index", "Product");
         }
@@ -77,7 +77,7 @@
                 return RedirectToAction("Error", "Shared");
             }
 
-            var product = _productRepository.GetProductById((int)id);
+            var product = _shopRepository.GetProductById((int)id);
 
             var productDetailsVM = Mapper.Instance.Map<ProductDetailsVM>(product);
 
@@ -92,7 +92,7 @@
             {
                 return RedirectToAction("Error", "Shared");
             }
-            var product = _productRepository.GetProductById((int)id);
+            var product = _shopRepository.GetProductById((int)id);
 
             var productDetailsVM = Mapper.Instance.Map<ProductDetailsVM>(product);
 
@@ -111,7 +111,7 @@
 
             if (ModelState.IsValid)
             {
-                _productRepository.EditProduct(productToEdit);
+                _shopRepository.EditProduct(productToEdit);
 
                 return RedirectToAction("Index", "Product");
             }
@@ -127,7 +127,7 @@
             {
                 return RedirectToAction("Error", "Shared");
             }
-            var product = _productRepository.GetProductById((int)id);
+            var product = _shopRepository.GetProductById((int)id);
 
             var productDetailsVM = Mapper.Instance.Map<ProductDetailsVM>(product);
 
@@ -140,7 +140,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult Delete(ProductDetailsVM productVMToDel)
         {
-            _productRepository.DeleteProduct(productVMToDel.Id);
+            _shopRepository.DeleteProduct(productVMToDel.Id);
 
             return RedirectToAction("Index", "Product");
         }
@@ -149,17 +149,17 @@
 
         public IList<Product> GetProducts()
         {
-            return _productRepository.GetProducts();
-        }
-
-        public void CreateProduct(Product product, string username)
-        {
-            _productRepository.CreateProduct(product, username);
+            return _shopRepository.GetProducts();
         }
 
         public IList<Category> GetCategories()
         {
-            return _productRepository.GetCategories();
+            return _shopRepository.GetCategories();
+        }
+
+        public IList<Product> GetTop3Products()
+        {
+            return _shopRepository.GetTop3Products();
         }
 
         #endregion

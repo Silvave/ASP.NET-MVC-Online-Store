@@ -5,7 +5,7 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/Content/registerUser.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/register-user.css" type="text/css" />
     <script src="~/Scripts/custom/priviewImage.js"></script>
 </head>
 
@@ -61,12 +61,12 @@
         </div>
     </div>
     <div class="col-md-10 reg-item">
-        <div class="image-wrapper">
+        <div class="create-product image-wrapper">
             <img class="img-responsive" id="file" src="#" alt="Profile picture">
         </div>
         @Html.TextBoxFor(m => m.ProductImage, new
                                             {
-                                                @class = "col-md-offset-2 btn btn-default",
+                                                @class = "btn btn-default",
                                                 type = "file",
                                                 @onchange = "previewImage()"
                                             })

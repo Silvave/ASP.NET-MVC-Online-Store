@@ -1,24 +1,30 @@
-﻿@{
+﻿@using Shop.Web.Controllers
+@{
+    ProductController productCtrl = new ProductController();
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="product-container">
+<head>
+    <link href="~/Content/list-products.css" rel="stylesheet" type="text/css" />
+</head>
+
+<main>
     <aside>
         <nav>
-            <header>Featured articles</header>
+            <header>Most popular products</header>
             <ul>
-                <li><a href="#">Web Colors</a></li>
-                <li><a href="#">Web Safe Colors</a></li>
-                <li><a href="#">RGB Color Mode</a></li>
-                <li><a href="#">RGBA Color Space</a></li>
-                <li><a href="#">HSL adn HSV</a></li>
-                <li><a href="#">Lorem Ipsum</a></li>
+                @foreach (var product in productCtrl.GetTop3Products())
+            {
+                    <li class="product-title">@Html.ActionLink(@product.Title, "Details", "Product", new { id = product.Id }, null)</li>
+                }
             </ul>
         </nav>
     </aside>
-    <ul class="main-product-view">
-        @{ Html.RenderPartial("Products"); }
-    </ul>
-    <div class="main-product-bar"></div>
-</section>
+    <section class="product-container ">
+        <ul class="main-product-view">
+            @{ Html.RenderPartial("Products"); }
+        </ul>
+        <div class="main-product-bar"></div>
+    </section>
+</main>

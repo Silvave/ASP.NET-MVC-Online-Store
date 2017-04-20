@@ -6,22 +6,7 @@
 
     public static class UserSeeder
     {
-        //Creates user without a role (default user).
-        //public static void CreateOrUpdateUser(UserManager<ApplicationUser> userManager, string userName,string password)
-        //{
-        //    var user = new ApplicationUser { UserName = userName, Email = userName };
-        //    if (userManager.FindByName(userName) == null)
-        //    {
-        //        var result = userManager.Create(user, password);
-
-        //    }
-        //    else
-        //    {
-        //        var result = userManager.Update(user);
-        //    }
-        //}
-
-        // Creates user with a custom (non-admin) role
+        // Creates user with a custom role
         public static void CreateOrUpdateUser(RoleManager<IdentityRole> roleManager,string roleName, UserManager<ApplicationUser> userManager, string email, string userName, string password, string firstname, string lastname, int age)
         {
             var user = new ApplicationUser { UserName = userName, Email = email,

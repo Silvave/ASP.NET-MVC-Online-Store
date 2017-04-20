@@ -15,7 +15,15 @@
     <section class="delete-product">
         <article class="product">
             <div class="image-wrapper">
-                <img src="data:image;base64, @Model.ProductImage" alt="No Image" class="product-img" />
+                @if (Model.ProductImage.Count() == 0)
+                {
+                    <img src="../../images/no-photo.png" class="product-img" />
+                }
+                else
+                {
+                    <img src="data:image;base64, @Model.ProductImage" class="product-img" />
+
+                }
             </div>
             <div class="product-info">
                 <h3 class="title">Title: @Model.Title</h3>

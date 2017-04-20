@@ -12,14 +12,20 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ProductDetailsVM</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             <div>
-                <img src="data:image;base64, @Model.ProductImage" style="width: 400px; height: auto" />
+                @if (Model.ProductImage.Count() == 0)
+                {
+                    <img src="../../images/no-photo.png" class="product-img" style="width: 400px; height: auto"/>
+                }
+                else
+                {
+                    <img src="data:image;base64, @Model.ProductImage" style="width: 400px; height: auto" />
+                }
             </div>
         </div>
 
