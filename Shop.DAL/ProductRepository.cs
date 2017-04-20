@@ -23,6 +23,14 @@
             return _context.Products.Where(p => p.Deleted == false).ToList();
         }
 
+        public IList<Product> GetTop3Products()
+        {
+            return _context.Products
+                .Where(p => p.Deleted == false)
+                .OrderByDescending(p => p.Likes.Where(l => l.LikeIt == true).Count())
+                .ToList();
+        }
+
         public Product GetProductById(int id)
         {
             return _context.Products.FirstOrDefault(p => p.Id == id);
@@ -45,6 +53,7 @@
             product.Owner = _context.Users.FirstOrDefault(u => u.UserName == username);
 
             _context.Products.Add(product);
+
             Save();
         }
 
@@ -69,6 +78,7 @@
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == id);
             product.Deleted = true;
+
             Save();
         }
 

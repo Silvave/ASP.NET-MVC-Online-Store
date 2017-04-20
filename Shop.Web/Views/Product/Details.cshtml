@@ -4,54 +4,47 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<head>
+    <link rel="stylesheet" href="~/Content/delete-product.css" type="text/css" />
+    <link href="~/Content/product-details.css" rel="stylesheet" type="text/css" />
+</head>
 
-<div class="form-group">
-    <div>
-        <img src="data:image;base64, @Model.ProductImage" style="width: 400px; height: auto" />
-    </div>
-    @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
-    <div class="col-md-10">
-        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @value = Model.Title, @disabled = true })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ShortDescription, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.ShortDescription, new { @class = "form-control", @value = Model.ShortDescription, @disabled = true })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = "15", @value = Model.ShortDescription, @disabled = true })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Price, new { @class = "form-control", @value = Model.Price, @disabled = true })
-        </div>
-    </div>
-    <br />
-    <div class="form-group">
-        @Html.LabelFor(m => m.Categories, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            <ul>
-                @foreach (var category in Model.Categories)
-                {
-                    <li>
-                        <div>
-                            <ul>
-                                <li>Category: @category.Name</li>
-                                <li>Description: @category.Description</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <br />
-                }
-            </ul>
-        </div>
-    </div>
+
+<div class="product-form form-group">
+    <h2 class="page-details">Product details</h2>
+    <section class="product-details">
+        <article class="product">
+            <div class="image-wrapper">
+                <img src="data:image;base64, @Model.ProductImage" alt="No Image" class="product-img" />
+            </div>
+            <div class="product-info">
+                <h3 class="title">Title: @Model.Title</h3>
+                <h4 class="short-description">Short description: @Model.ShortDescription</h4>
+                <p class="description">Description: @Model.Description</p>
+                <div class="date-owner">
+                    @if (Model.ModifiedOn != null)
+                    {
+                        <span class="product-date">Edited on: @Model.ModifiedOn</span>
+                    }
+                    else
+                    {
+                        <span class="product-date">Created on: @Model.CreatedOn</span>
+                    }
+                    <p class="product-owner">
+                        Product owner: @Model.Owner.FirstName @Model.Owner.LastName
+                    </p>
+                </div>
+                <p class="product-price">Price: @Model.Price</p>
+                <ul class="product-categories">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li>Category: @category.Name</li>
+                        <li>Description: @category.Description</li>
+                    }
+                </ul>
+            </div>
+        </article>
+    </section>
     <div class="button-group">
         @Html.ActionLink("Edit", "Edit", "Product",new { id = Model.Id }, new { @class = "btn btn-primary" })
         @Html.ActionLink("Delete", "Delete", "Product",new { id = Model.Id }, new { @class = "btn btn-primary" })

@@ -5,75 +5,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<head>
+    <link href="~/Content/delete-product.css" rel="stylesheet" type="text/css"/>
+</head>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>ProductDetailsVM</h4>
+<main>
+    <h3 class="ask-question">Are you sure you want to delete this product?</h3>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductImage)
-        </dt>
-        <dt>
-            <img src="data:image;base64, @Model.ProductImage" style="width: 400px; height: auto" />
-        </dt>
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShortDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShortDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedOn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedOn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-    </dl>
-
+    <section class="delete-product">
+        <article class="product">
+            <div class="image-wrapper">
+                <img src="data:image;base64, @Model.ProductImage" alt="No Image" class="product-img" />
+            </div>
+            <div class="product-info">
+                <h3 class="title">Title: @Model.Title</h3>
+                <h4 class="short-description">Short description: @Model.ShortDescription</h4>
+                <p class="description">Description: @Model.Description</p>
+                <div class="date-owner">
+                    @if (Model.ModifiedOn != null)
+                    {
+                        <span class="product-date">Edited on: @Model.ModifiedOn</span>
+                    }
+                    else
+                    {
+                        <span class="product-date">Created on: @Model.CreatedOn</span>
+                    }
+                    <p class="product-owner">
+                        Product owner: @Model.Owner.FirstName @Model.Owner.LastName
+                    </p>
+                </div>
+                <p class="product-price">Price: @Model.Price</p>
+                <ul class="product-categories">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li>Category: @category.Name</li>
+                        <li>Description: @category.Description</li>
+                    }
+                </ul>
+            </div>
+        </article>
+    </section>
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back", "Details", "Product", new { id = Model.Id }, new { @class = "btn btn-primary" })
         </div>
     }
-</div>
+</main>

@@ -4,8 +4,21 @@
 }
 
 <section class="product-container">
-    <div class="main-product-view">
+    <aside>
+        <nav>
+            <header>Featured articles</header>
+            <ul>
+                <li><a href="#">Web Colors</a></li>
+                <li><a href="#">Web Safe Colors</a></li>
+                <li><a href="#">RGB Color Mode</a></li>
+                <li><a href="#">RGBA Color Space</a></li>
+                <li><a href="#">HSL adn HSV</a></li>
+                <li><a href="#">Lorem Ipsum</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <ul class="main-product-view">
         @{ Html.RenderPartial("Products"); }
-    </div>
+    </ul>
     <div class="main-product-bar"></div>
 </section>

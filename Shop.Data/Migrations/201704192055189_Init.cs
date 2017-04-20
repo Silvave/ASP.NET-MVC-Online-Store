@@ -15,6 +15,7 @@ namespace Shop.Data.Migrations
                         StreetName = c.String(nullable: false, maxLength: 100),
                         TownId = c.Int(nullable: false),
                         UserId = c.String(maxLength: 128),
+                        IsDeleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Towns", t => t.TownId, cascadeDelete: true)
@@ -53,6 +54,7 @@ namespace Shop.Data.Migrations
                         Age = c.Int(),
                         Gender = c.Int(),
                         ProfilePicture = c.Binary(),
+                        IsDeleted = c.Boolean(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),

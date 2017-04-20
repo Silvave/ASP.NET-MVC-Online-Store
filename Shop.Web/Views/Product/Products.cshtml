@@ -7,7 +7,7 @@
 
 @foreach (var product in Model)
 {
-    <article class="product-container">
+    <li class="product-container">
         <div class="image-wrapper">
             <img src="data:image;base64, @product.ProductImage" class="display-img" style="width: 200px; height: auto" />
         </div>
@@ -20,7 +20,7 @@
         <div class="date">
             <span class="created-on">@product.CreatedOn</span>
         </div>
-    </article>
+    </li>
     @*<script>
         $(document).ready(function () {
             let picture = @Url.Content(@"~\images\no-photo.png");
